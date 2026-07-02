@@ -157,28 +157,6 @@ function Arrival() {
       </motion.div>
 
 
-      {/* Bottom-left signature tagline */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.8, duration: 1.2, ease: [0.2, 0.9, 0.2, 1] }}
-        className="absolute bottom-10 left-6 md:left-10 z-10 max-w-xs"
-      >
-        <p
-          className="floaty italic font-sans text-2xl md:text-3xl leading-tight"
-          style={{ color: "var(--color-white, #ffffff)", textShadow: "0 2px 20px rgba(0,0,0,0.35)" }}
-        >
-          Our Network is our Networth
-        </p>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0 }} animate={{ opacity: 0.6 }} transition={{ delay: 2.5, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-eyebrow flex flex-col items-center gap-2 z-10"
-      >
-        <span>Scroll</span>
-        <motion.span animate={{ height: [8, 20, 8] }} transition={{ duration: 2, repeat: Infinity }} className="w-px bg-foreground/50" />
-      </motion.div>
     </section>
   );
 }
