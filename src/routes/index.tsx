@@ -723,7 +723,7 @@ function Contact() {
                 className="text-left grid gap-10"
               >
                 <SculpturalField label="Name" value={name} onChange={setName} />
-                <SculpturalField label="Email Address" value={email} onChange={setEmail} type="email" required />
+                <SculpturalField label="Email Address" value={email} onChange={setEmail} type="email" />
                 <SculpturalField label="Problem — Statement" value={message} onChange={setMessage} multiline />
                 <div className="pt-4 flex flex-wrap items-center justify-between gap-4">
                   <span className="text-xs text-foreground/50">We reply within two working days.</span>
