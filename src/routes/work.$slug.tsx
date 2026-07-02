@@ -127,12 +127,12 @@ export const Route = createFileRoute("/work/$slug")({
   head: ({ loaderData }) => ({
     meta: loaderData
       ? [
-          { title: `${loaderData.project.title} — Antigravity Case Study` },
+          { title: `KRYNEX STUDIO — ${loaderData.project.title}` },
           { name: "description", content: loaderData.project.summary },
-          { property: "og:title", content: `${loaderData.project.title} — Antigravity` },
+          { property: "og:title", content: `KRYNEX STUDIO — ${loaderData.project.title}` },
           { property: "og:description", content: loaderData.project.summary },
         ]
-      : [{ title: "Case study — Antigravity" }, { name: "robots", content: "noindex" }],
+      : [{ title: "KRYNEX STUDIO — Case study" }, { name: "robots", content: "noindex" }],
   }),
   component: CaseStudy,
   notFoundComponent: () => (
