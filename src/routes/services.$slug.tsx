@@ -114,12 +114,12 @@ export const Route = createFileRoute("/services/$slug")({
   head: ({ loaderData }) => ({
     meta: loaderData
       ? [
-          { title: `${loaderData.service.name} — Antigravity` },
+          { title: `KRYNEX STUDIO — ${loaderData.service.name}` },
           { name: "description", content: loaderData.service.tagline },
-          { property: "og:title", content: `${loaderData.service.name} — Antigravity` },
+          { property: "og:title", content: `KRYNEX STUDIO — ${loaderData.service.name}` },
           { property: "og:description", content: loaderData.service.tagline },
         ]
-      : [{ title: "Service — Antigravity" }, { name: "robots", content: "noindex" }],
+      : [{ title: "KRYNEX STUDIO — Service" }, { name: "robots", content: "noindex" }],
   }),
   component: ServiceDetail,
   notFoundComponent: () => (
