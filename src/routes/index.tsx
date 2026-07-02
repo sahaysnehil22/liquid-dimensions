@@ -941,7 +941,7 @@ function EndingSequence() {
       <div className="relative max-w-7xl mx-auto">
         <div className="text-eyebrow mb-8">End credits</div>
         <h2 className="text-display text-[clamp(4rem,18vw,16rem)] leading-[0.85] shimmer-text">
-          antigravity.
+          KRYNEX.
         </h2>
         <p className="mt-8 max-w-lg text-foreground/60 italic">
           "People don't remember pages. They remember experiences." — Studio credo, no. 01
