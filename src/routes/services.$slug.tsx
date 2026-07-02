@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { AuroraBackground, AtmosphereProvider, ChapterLabel, SplitReveal, LiquidButton } from "@/components/experience";
+import krynexLogo from "@/assets/krynex-logo.png.asset.json";
 
 type Service = {
   slug: string;
@@ -113,12 +114,12 @@ export const Route = createFileRoute("/services/$slug")({
   head: ({ loaderData }) => ({
     meta: loaderData
       ? [
-          { title: `${loaderData.service.name} — Antigravity` },
+          { title: `KRYNEX STUDIO — ${loaderData.service.name}` },
           { name: "description", content: loaderData.service.tagline },
-          { property: "og:title", content: `${loaderData.service.name} — Antigravity` },
+          { property: "og:title", content: `KRYNEX STUDIO — ${loaderData.service.name}` },
           { property: "og:description", content: loaderData.service.tagline },
         ]
-      : [{ title: "Service — Antigravity" }, { name: "robots", content: "noindex" }],
+      : [{ title: "KRYNEX STUDIO — Service" }, { name: "robots", content: "noindex" }],
   }),
   component: ServiceDetail,
   notFoundComponent: () => (
@@ -139,8 +140,7 @@ function ServiceDetail() {
         <AuroraBackground />
         <header className="relative z-10 flex items-center justify-between px-6 md:px-10 py-5">
           <Link to="/" className="flex items-center gap-2 font-display text-xl tracking-tight" data-cursor="hover">
-            <span className="inline-block size-2.5 rounded-full bg-foreground" />
-            antigravity
+            <img src={krynexLogo.url} alt="KRYNEX Studio" className="h-11 w-auto object-contain" style={{ mixBlendMode: "screen" }} />
           </Link>
           <Link to="/" hash="services" className="text-eyebrow hover:text-foreground transition-colors">
             ← All services

@@ -60,7 +60,7 @@ export function VerticalBrand({
   top = "10%",
   size = "clamp(4rem, 10vw, 9rem)",
   opacity = 0.06,
-  text = "ANTIGRAVITY",
+  text = "KRYNEX",
   parallax = 0,
 }: {
   side?: "left" | "right";

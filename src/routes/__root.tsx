@@ -79,10 +79,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Antigravity — Interactive Digital Experiences" },
+      { title: "KRYNEX STUDIO — Turning Vision into Reality" },
       { name: "description", content: "An independent studio designing and engineering unforgettable interactive experiences." },
-      { name: "author", content: "Antigravity Studio" },
-      { property: "og:title", content: "Antigravity — Interactive Digital Experiences" },
+      { name: "author", content: "KRYNEX Studio" },
+      { property: "og:title", content: "KRYNEX STUDIO — Turning Vision into Reality" },
       { property: "og:description", content: "We don't build websites. We build first impressions." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
