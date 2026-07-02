@@ -1,6 +1,13 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { AuroraBackground, AtmosphereProvider, ChapterLabel, SplitReveal, LiquidButton } from "@/components/experience";
+import paperfellowsHero from "@/assets/paperfellows-hero.png.asset.json";
+import cryptosimHero from "@/assets/cryptosim-hero.png.asset.json";
+
+const HERO_IMAGES: Record<string, { url: string; alt: string; href?: string }> = {
+  paperfellows: { url: paperfellowsHero.url, alt: "PaperFellows storefront", href: "https://paperfellows.vercel.app/" },
+  cryptosim: { url: cryptosimHero.url, alt: "CryptoSim trading interface" },
+};
 
 type Project = {
   slug: string;
