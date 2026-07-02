@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
 import Lenis from "lenis";
@@ -212,9 +212,9 @@ function Arrival() {
 /* CHAPTER 2 — STORY */
 function Story() {
   const items = [
-    { year: "2019", title: "First light", body: "Started as two people, one shared conviction: software could feel." },
-    { year: "2021", title: "Expansion", body: "Grew into an interdisciplinary team of designers, engineers, and directors." },
-    { year: "2023", title: "New material", body: "Introduced our Liquid Crystal interface language — soft, physical, alive." },
+    { year: "2023", title: "First light", body: "Started as two people, one shared conviction: software could feel." },
+    { year: "2024", title: "Expansion", body: "Grew into an interdisciplinary team of designers, engineers, and directors." },
+    { year: "2025", title: "New material", body: "Introduced our Liquid Crystal interface language — soft, physical, alive." },
     { year: "2026", title: "Now", body: "Building the next generation of interactive brands with AI-native tools." },
   ];
   return (
@@ -370,13 +370,11 @@ const ArtObelisk = ({ hover, accent }: { hover: boolean; accent: string }) => (
 );
 
 function Services() {
-  const artifacts: Artifact[] = [
-    { name: "Development", kind: "Crystalline", desc: "Performant, modern engineering built to last.", accent: "var(--aurora-2)", render: (h) => <ArtCrystal hover={h} accent="var(--aurora-2)" /> },
-    { name: "AI Solutions", kind: "Liquid", desc: "Native AI features woven into product experience.", accent: "var(--aurora-4)", render: (h) => <ArtLiquid hover={h} accent="var(--aurora-4)" /> },
-    { name: "Brand Identity", kind: "Metallic", desc: "Visual languages that scale across every touchpoint.", accent: "var(--aurora-1)", render: (h) => <ArtMetallic hover={h} accent="var(--aurora-1)" /> },
-    { name: "Motion Design", kind: "Holographic", desc: "Movement that reveals meaning, not decoration.", accent: "var(--aurora-3)", render: (h) => <ArtHolo hover={h} accent="var(--aurora-3)" /> },
-    { name: "Automation", kind: "Orbital", desc: "Workflows that quietly run your business at night.", accent: "var(--aurora-2)", render: (h) => <ArtRings hover={h} accent="var(--aurora-2)" /> },
-    { name: "Strategy", kind: "Monolithic", desc: "The point of view that makes design decisions inevitable.", accent: "var(--aurora-1)", render: (h) => <ArtObelisk hover={h} accent="var(--aurora-1)" /> },
+  const artifacts: (Artifact & { slug: string })[] = [
+    { slug: "development", name: "Development", kind: "Crystalline", desc: "Performant, modern engineering built to last.", accent: "var(--aurora-2)", render: (h) => <ArtCrystal hover={h} accent="var(--aurora-2)" /> },
+    { slug: "ai-automations", name: "AI Automations", kind: "Liquid", desc: "Autonomous workflows and native AI features woven into product.", accent: "var(--aurora-4)", render: (h) => <ArtLiquid hover={h} accent="var(--aurora-4)" /> },
+    { slug: "web-design", name: "Web Design", kind: "Metallic", desc: "Visual languages that scale across every touchpoint.", accent: "var(--aurora-1)", render: (h) => <ArtMetallic hover={h} accent="var(--aurora-1)" /> },
+    { slug: "lead-generation", name: "Lead Generation", kind: "Orbital", desc: "Systems that fill your pipeline while you sleep.", accent: "var(--aurora-3)", render: (h) => <ArtRings hover={h} accent="var(--aurora-3)" /> },
   ];
   const [active, setActive] = useState<number | null>(null);
 
@@ -385,33 +383,38 @@ function Services() {
       <div className="max-w-7xl mx-auto">
         <ChapterLabel n="02" title="Services" />
         <h2 className="text-display text-6xl md:text-8xl mt-6 max-w-4xl">
-          <SplitReveal text="Six artifacts. One studio." />
+          <SplitReveal text="Four artifacts. One studio." />
         </h2>
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {artifacts.map((a, i) => (
-            <motion.article
+            <motion.div
               key={a.name}
               onMouseEnter={() => setActive(i)}
               onMouseLeave={() => setActive(null)}
               initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-10%" }}
-              transition={{ duration: 1, delay: (i % 3) * 0.08, ease: [0.2, 0.9, 0.2, 1] }}
-              className="group relative liquid rounded-[2rem] p-8 aspect-[4/5] flex flex-col overflow-hidden"
-              data-cursor="open"
+              transition={{ duration: 1, delay: (i % 2) * 0.08, ease: [0.2, 0.9, 0.2, 1] }}
             >
-              <div className="flex items-start justify-between mb-4">
-                <span className="text-eyebrow">{String(i + 1).padStart(2, "0")}</span>
-                <span className="text-eyebrow opacity-60">{a.kind}</span>
-              </div>
-              <div className="relative flex-1 -mx-4">
-                {a.render(active === i)}
-              </div>
-              <div className="relative">
-                <h3 className="text-3xl md:text-4xl font-display">{a.name}</h3>
-                <p className="mt-2 text-sm text-foreground/60 leading-relaxed">{a.desc}</p>
-              </div>
-            </motion.article>
+              <Link
+                to="/services/$slug"
+                params={{ slug: a.slug }}
+                className="group relative liquid rounded-[2rem] p-8 aspect-[4/5] flex flex-col overflow-hidden"
+                data-cursor="open" data-cursor-label="OPEN"
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <span className="text-eyebrow">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="text-eyebrow opacity-60">{a.kind}</span>
+                </div>
+                <div className="relative flex-1 -mx-4">
+                  {a.render(active === i)}
+                </div>
+                <div className="relative">
+                  <h3 className="text-3xl md:text-4xl font-display">{a.name}</h3>
+                  <p className="mt-2 text-sm text-foreground/60 leading-relaxed">{a.desc}</p>
+                </div>
+              </Link>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -497,10 +500,10 @@ function Manifesto() {
 /* CHAPTER — WORK */
 function Work() {
   const projects = [
-    { t: "Halcyon", c: "Luxury fragrance", tags: "Brand · E-com · Motion", a: "var(--aurora-1)" },
-    { t: "Northline", c: "Fintech", tags: "Product · Design system", a: "var(--aurora-2)" },
-    { t: "Fieldnotes", c: "Editorial", tags: "Publication · 3D", a: "var(--aurora-3)" },
-    { t: "Ozone", c: "Climate tech", tags: "Brand · Web · Data viz", a: "var(--aurora-4)" },
+    { slug: "paperfellows",     t: "PaperFellows",     c: "Luxury Design",     tags: "Brand · E-com · Motion",   a: "var(--aurora-1)" },
+    { slug: "cryptosim",        t: "CryptoSim",        c: "Fintech",           tags: "Product · Design system",  a: "var(--aurora-2)" },
+    { slug: "leaseabstractor",  t: "LeaseAbstractor",  c: "Editorial",         tags: "Publication · 3D",         a: "var(--aurora-3)" },
+    { slug: "lead-generator",   t: "Lead Generator",   c: "Climate tech",      tags: "Brand · Web · Data viz",   a: "var(--aurora-4)" },
   ];
   return (
     <section id="work" className="relative pt-16 md:pt-24 pb-40 px-6 md:px-10">
@@ -511,32 +514,37 @@ function Work() {
         </h2>
         <div className="mt-24 grid md:grid-cols-2 gap-8">
           {projects.map((p, i) => (
-            <motion.article
+            <motion.div
               key={p.t}
               initial={{ opacity: 0, y: 80 }} whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 1, delay: (i % 2) * 0.1, ease: [0.2, 0.9, 0.2, 1] }}
-              className="group relative liquid rounded-3xl p-8 md:p-10 aspect-[4/5] flex flex-col justify-between overflow-hidden"
-              data-cursor="open" data-cursor-label="CASE"
             >
-              <motion.div
-                whileHover={{ scale: 1.15 }} transition={{ duration: 1.2, ease: [0.2, 0.9, 0.2, 1] }}
-                className="absolute inset-0"
-                style={{ background: `radial-gradient(circle at 70% 30%, ${p.a}, transparent 55%)`, opacity: 0.55 }}
-              />
-              <div className="relative flex items-start justify-between">
-                <span className="text-eyebrow">{String(i + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}</span>
-                <span className="text-eyebrow">{p.tags}</span>
-              </div>
-              <div className="relative">
-                <div className="text-eyebrow mb-2 opacity-70">{p.c}</div>
-                <h3 className="text-6xl md:text-8xl text-display">{p.t}</h3>
-                <div className="mt-6 flex items-center gap-2 text-sm text-foreground/80">
-                  <span>Open case study</span>
-                  <motion.span animate={{ x: [0, 4, 0] }} transition={{ duration: 2, repeat: Infinity }}>→</motion.span>
+              <Link
+                to="/work/$slug"
+                params={{ slug: p.slug }}
+                className="group relative liquid rounded-3xl p-8 md:p-10 aspect-[4/5] flex flex-col justify-between overflow-hidden"
+                data-cursor="open" data-cursor-label="CASE"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.15 }} transition={{ duration: 1.2, ease: [0.2, 0.9, 0.2, 1] }}
+                  className="absolute inset-0"
+                  style={{ background: `radial-gradient(circle at 70% 30%, ${p.a}, transparent 55%)`, opacity: 0.55 }}
+                />
+                <div className="relative flex items-start justify-between">
+                  <span className="text-eyebrow">{String(i + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}</span>
+                  <span className="text-eyebrow">{p.tags}</span>
                 </div>
-              </div>
-            </motion.article>
+                <div className="relative">
+                  <div className="text-eyebrow mb-2 opacity-70">{p.c}</div>
+                  <h3 className="text-6xl md:text-8xl text-display">{p.t}</h3>
+                  <div className="mt-6 flex items-center gap-2 text-sm text-foreground/80">
+                    <span>Open case study</span>
+                    <motion.span animate={{ x: [0, 4, 0] }} transition={{ duration: 2, repeat: Infinity }}>→</motion.span>
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
           ))}
         </div>
       </div>
