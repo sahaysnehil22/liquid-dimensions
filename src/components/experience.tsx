@@ -137,9 +137,10 @@ export function AtmosphereToggle() {
   const choose = (a: Atmosphere) => {
     if (a === atmosphere) { setOpen(false); return; }
     setPouring(a);
-    setTimeout(() => { setAtmosphere(a); }, 250);
-    setTimeout(() => { setPouring(null); setOpen(false); }, 1400);
+    setAtmosphere(a);
+    setTimeout(() => { setPouring(null); setOpen(false); }, 450);
   };
+
 
   return (
     <div className="relative">
@@ -189,7 +190,7 @@ export function AtmosphereToggle() {
             initial={{ scale: 0, opacity: 0.9, borderRadius: "100%" }}
             animate={{ scale: 45, opacity: 0.85 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 1.2, ease: [0.85, 0, 0.15, 1] }}
+            transition={{ duration: 0.5, ease: [0.85, 0, 0.15, 1] }}
             className="pointer-events-none fixed top-6 right-6 z-[80] size-24 rounded-full"
             style={{
               background: `conic-gradient(from 90deg, ${ATMOSPHERES.find(a=>a.id===pouring)!.swatch.join(", ")}, ${ATMOSPHERES.find(a=>a.id===pouring)!.swatch[0]})`,

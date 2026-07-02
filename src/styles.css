@@ -69,7 +69,7 @@
   --aurora-2: oklch(0.9 0.07 220);
   --aurora-3: oklch(0.92 0.06 160);
   --aurora-4: oklch(0.9 0.09 310);
-  transition: --aurora-1 1.2s ease, --aurora-2 1.2s ease, --aurora-3 1.2s ease, --aurora-4 1.2s ease;
+  transition: --aurora-1 0.35s ease, --aurora-2 0.35s ease, --aurora-3 0.35s ease, --aurora-4 0.35s ease;
 }
 
 /* --- Atmosphere modes (light-always, mood shifts) --- */
