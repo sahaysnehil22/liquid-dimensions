@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform, AnimatePresence, useMotionValue, useSp
 import Lenis from "lenis";
 import {
   AuroraBackground, LiquidButton, AtmosphereToggle, AtmosphereProvider,
-  SplitReveal, ChapterLabel, Parallax, VerticalBrand,
+  SplitReveal, ChapterLabel, Parallax,
 } from "@/components/experience";
 import heroVideo from "@/assets/hero-loop.mp4.asset.json";
 
@@ -28,7 +28,7 @@ export const Route = createFileRoute("/")({
 
 function useLenis() {
   useEffect(() => {
-    const lenis = new Lenis({ duration: 1.4, easing: (t) => 1 - Math.pow(1 - t, 3) });
+    const lenis = new Lenis({ duration: 0.9, easing: (t) => 1 - Math.pow(1 - t, 3) });
     let raf = 0;
     const loop = (t: number) => { lenis.raf(t); raf = requestAnimationFrame(loop); };
     raf = requestAnimationFrame(loop);
@@ -44,7 +44,7 @@ function Nav() {
         antigravity
       </a>
       <nav className="hidden md:flex items-center gap-8 text-sm text-foreground/70">
-        {["Story","Services","Manifesto","Work","Voices","Contact"].map((l) => (
+        {["Story","Services","Work","Voices","Contact"].map((l) => (
           <a key={l} href={`#${l.toLowerCase()}`} data-cursor="hover" className="hover:text-foreground transition-colors">{l}</a>
         ))}
       </nav>
@@ -134,7 +134,7 @@ function Arrival() {
         >
           Independent studio · Est. 2019 · Everywhere
         </motion.div>
-        <h1 className="text-display text-[clamp(3rem,10vw,10rem)]">
+        <h1 className="text-display text-[clamp(2.5rem,8vw,7.5rem)]">
           <SplitReveal text="We craft" delay={0.6} />
           <br />
           <span className="italic font-normal shimmer-text"><SplitReveal text="digital gravity." delay={0.9} /></span>
@@ -151,33 +151,12 @@ function Arrival() {
           className="mt-12 flex items-center justify-center gap-4"
         >
           <LiquidButton cursorLabel="ENTER" onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}>
-            Enter the work →
+            Explore →
           </LiquidButton>
         </motion.div>
       </motion.div>
 
-      {/* Bottom-left signature tagline */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.8, duration: 1.2, ease: [0.2, 0.9, 0.2, 1] }}
-        className="absolute bottom-10 left-6 md:left-10 z-10 max-w-xs"
-      >
-        <p
-          className="floaty italic font-sans text-2xl md:text-3xl leading-tight"
-          style={{ color: "var(--color-white, #ffffff)", textShadow: "0 2px 20px rgba(0,0,0,0.35)" }}
-        >
-          Our Network is our Networth
-        </p>
-      </motion.div>
 
-      <motion.div
-        initial={{ opacity: 0 }} animate={{ opacity: 0.6 }} transition={{ delay: 2.5, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-eyebrow flex flex-col items-center gap-2 z-10"
-      >
-        <span>Scroll</span>
-        <motion.span animate={{ height: [8, 20, 8] }} transition={{ duration: 2, repeat: Infinity }} className="w-px bg-foreground/50" />
-      </motion.div>
     </section>
   );
 }
@@ -191,13 +170,13 @@ function Story() {
     { year: "2026", title: "Now", body: "Building the next generation of interactive brands with AI-native tools." },
   ];
   return (
-    <section id="story" className="relative py-40 px-6 md:px-10">
+    <section id="story" className="relative py-32 px-6 md:px-10">
       <div className="max-w-6xl mx-auto">
         <ChapterLabel n="01" title="The Story" />
         <h2 className="text-display text-6xl md:text-8xl mt-6 max-w-3xl">
           <SplitReveal text="A short walk through our memory." />
         </h2>
-        <div className="mt-24 grid gap-8 md:grid-cols-2">
+        <div className="mt-12 grid gap-8 md:grid-cols-2">
           {items.map((it, i) => (
             <Parallax key={it.year} offset={i % 2 ? 30 : 60}>
               <motion.div
@@ -354,16 +333,13 @@ function Services() {
   const [active, setActive] = useState<number | null>(null);
 
   return (
-    <section id="services" className="relative py-40 px-6 md:px-10">
+    <section id="services" className="relative py-32 px-6 md:px-10">
       <div className="max-w-7xl mx-auto">
         <ChapterLabel n="02" title="Services" />
         <h2 className="text-display text-6xl md:text-8xl mt-6 max-w-4xl">
           <SplitReveal text="Six artifacts. One studio." />
         </h2>
-        <p className="mt-6 max-w-xl text-foreground/60">
-          Each service has its own material. No repeated shapes. Hover to bring it to life.
-        </p>
-        <div className="mt-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {artifacts.map((a, i) => (
             <motion.article
               key={a.name}
@@ -746,9 +722,9 @@ function Contact() {
                 transition={{ duration: 0.8 }}
                 className="text-left grid gap-10"
               >
-                <SculpturalField label="Your name" value={name} onChange={setName} />
-                <SculpturalField label="Where to reply" value={email} onChange={setEmail} type="email" />
-                <SculpturalField label="A few sentences about what you're building" value={message} onChange={setMessage} multiline />
+                <SculpturalField label="Name" value={name} onChange={setName} />
+                <SculpturalField label="Email Address" value={email} onChange={setEmail} type="email" />
+                <SculpturalField label="Problem — Statement" value={message} onChange={setMessage} multiline />
                 <div className="pt-4 flex flex-wrap items-center justify-between gap-4">
                   <span className="text-xs text-foreground/50">We reply within two working days.</span>
                   <LiquidButton cursorLabel="SEND">Send transmission →</LiquidButton>
@@ -927,7 +903,7 @@ function EndingSequence() {
           </div>
           <div>
             <div className="text-eyebrow mb-3">Navigate</div>
-            {["Story","Services","Manifesto","Work","Voices","Contact"].map(l => (
+            {["Story","Services","Work","Voices","Contact"].map(l => (
               <a key={l} href={`#${l.toLowerCase()}`} data-cursor="hover" className="block text-foreground/70 hover:text-foreground transition-colors">{l}</a>
             ))}
           </div>
@@ -965,7 +941,7 @@ function EndingSequence() {
 
         <div className="mt-16 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-foreground/50 border-t border-foreground/10 pt-8">
           <p>© {new Date().getFullYear()} Antigravity Studio · An interactive fiction.</p>
-          <p className="tracking-[0.28em] uppercase">Crafted with intention · No template · No shortcut</p>
+          <p className="md:ml-auto tracking-[0.28em] uppercase text-right">Crafted with intention</p>
         </div>
       </div>
     </footer>
@@ -979,28 +955,12 @@ function Index() {
       <AuroraBackground />
       <Nav />
       <Arrival />
-      <div className="relative">
-        <VerticalBrand side="left" top="6%" opacity={0.05} parallax={80} />
-        <Story />
-      </div>
-      <div className="relative">
-        <VerticalBrand side="right" top="12%" opacity={0.04} parallax={120} text="ANTIGRAVITY · STUDIO" />
-        <Services />
-      </div>
-      <div className="relative">
-        <VerticalBrand side="left" top="20%" opacity={0.05} parallax={60} text="MANIFESTO" size="clamp(3rem, 8vw, 7rem)" />
-        <Manifesto />
-      </div>
+      <Story />
+      <Services />
       <Work />
-      <div className="relative">
-        <VerticalBrand side="right" top="8%" opacity={0.05} parallax={100} text="VOICES" />
-        <Testimonials />
-      </div>
+      <Testimonials />
       <Stats />
-      <div className="relative">
-        <VerticalBrand side="left" top="15%" opacity={0.06} parallax={70} text="ANTIGRAVITY" />
-        <Contact />
-      </div>
+      <Contact />
       <EndingSequence />
     </main>
   );
