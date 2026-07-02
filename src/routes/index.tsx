@@ -212,9 +212,9 @@ function Arrival() {
 /* CHAPTER 2 — STORY */
 function Story() {
   const items = [
-    { year: "2019", title: "First light", body: "Started as two people, one shared conviction: software could feel." },
-    { year: "2021", title: "Expansion", body: "Grew into an interdisciplinary team of designers, engineers, and directors." },
-    { year: "2023", title: "New material", body: "Introduced our Liquid Crystal interface language — soft, physical, alive." },
+    { year: "2023", title: "First light", body: "Started as two people, one shared conviction: software could feel." },
+    { year: "2024", title: "Expansion", body: "Grew into an interdisciplinary team of designers, engineers, and directors." },
+    { year: "2025", title: "New material", body: "Introduced our Liquid Crystal interface language — soft, physical, alive." },
     { year: "2026", title: "Now", body: "Building the next generation of interactive brands with AI-native tools." },
   ];
   return (
