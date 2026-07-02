@@ -169,12 +169,9 @@ function Arrival() {
       </motion.div>
 
       <motion.div style={{ opacity }} className="relative z-10 text-center max-w-5xl mx-auto pt-24">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 1 }}
-          className="text-eyebrow mb-8"
-        >
-          Independent studio · Est. 2019 · Everywhere
-        </motion.div>
+        <div className="text-eyebrow mb-8">
+          Independent studio · Est. 2023 · Everywhere
+        </div>
         <h1 className="text-display text-[clamp(2.5rem,8vw,7.5rem)]">
           <SplitReveal text="We craft" delay={0.6} />
           <br />
