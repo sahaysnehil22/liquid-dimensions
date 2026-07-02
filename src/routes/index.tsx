@@ -13,9 +13,9 @@ import krynexLogo from "@/assets/krynex-logo.png.asset.json";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Antigravity — Interactive Digital Experiences" },
+      { title: "KRYNEX STUDIO — Turning Vision into Reality" },
       { name: "description", content: "An independent studio building unforgettable digital moments. Design, motion and engineering, orchestrated as one." },
-      { property: "og:title", content: "Antigravity — Interactive Digital Experiences" },
+      { property: "og:title", content: "KRYNEX STUDIO — Turning Vision into Reality" },
       { property: "og:description", content: "We don't build websites. We build first impressions." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
