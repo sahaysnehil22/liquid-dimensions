@@ -137,9 +137,10 @@ export function AtmosphereToggle() {
   const choose = (a: Atmosphere) => {
     if (a === atmosphere) { setOpen(false); return; }
     setPouring(a);
-    setTimeout(() => { setAtmosphere(a); }, 250);
-    setTimeout(() => { setPouring(null); setOpen(false); }, 1400);
+    setAtmosphere(a);
+    setTimeout(() => { setPouring(null); setOpen(false); }, 450);
   };
+
 
   return (
     <div className="relative">
