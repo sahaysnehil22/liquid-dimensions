@@ -903,7 +903,7 @@ function EndingSequence() {
           </div>
           <div>
             <div className="text-eyebrow mb-3">Navigate</div>
-            {["Story","Services","Manifesto","Work","Voices","Contact"].map(l => (
+            {["Story","Services","Work","Voices","Contact"].map(l => (
               <a key={l} href={`#${l.toLowerCase()}`} data-cursor="hover" className="block text-foreground/70 hover:text-foreground transition-colors">{l}</a>
             ))}
           </div>
