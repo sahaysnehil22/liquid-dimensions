@@ -80,14 +80,21 @@ function Arrival() {
         my.set((e.clientY - r.height / 2) / r.height * 40);
       }}
     >
-      {/* Cinematic background layer */}
+      {/* Cinematic looping video background */}
       <motion.div style={{ scale, opacity, y, x: tx }} className="absolute inset-0 z-0">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url(${heroAtmosphere})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          filter: "saturate(1.05) contrast(1.02)",
-        }} />
+        <motion.video
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.6, ease: [0.2, 0.9, 0.2, 1] }}
+          src={heroVideo.url}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster=""
+          className="absolute inset-0 w-full h-full object-cover"
+        />
         {/* colored atmosphere wash — reacts to atmosphere tokens */}
         <div className="absolute inset-0" style={{
           background: "linear-gradient(180deg, color-mix(in oklab, var(--background) 40%, transparent) 0%, color-mix(in oklab, var(--background) 10%, transparent) 40%, color-mix(in oklab, var(--background) 85%, transparent) 100%)",
@@ -95,16 +102,6 @@ function Arrival() {
         <div className="absolute inset-0 mix-blend-soft-light opacity-70" style={{
           background: "radial-gradient(ellipse at 30% 20%, var(--aurora-1), transparent 55%), radial-gradient(ellipse at 80% 80%, var(--aurora-4), transparent 55%)",
         }} />
-        {/* subtle sweep light */}
-        <motion.div
-          animate={{ x: ["-30%", "30%"] }}
-          transition={{ duration: 16, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
-          className="absolute -inset-x-40 top-0 h-full opacity-40"
-          style={{
-            background: "linear-gradient(100deg, transparent 40%, color-mix(in oklab, white 40%, transparent) 50%, transparent 60%)",
-            mixBlendMode: "overlay",
-          }}
-        />
       </motion.div>
 
       {/* Floating depth particles */}
