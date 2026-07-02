@@ -7,6 +7,7 @@ import {
   SplitReveal, ChapterLabel, Parallax,
 } from "@/components/experience";
 import heroVideo from "@/assets/hero-loop.mp4.asset.json";
+import bae212Photo from "@/assets/voice-bae212.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
