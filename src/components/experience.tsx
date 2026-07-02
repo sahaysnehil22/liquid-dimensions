@@ -209,11 +209,11 @@ export function SplitReveal({ text, className = "", delay = 0 }: { text: string;
   return (
     <span className={className}>
       {words.map((w, i) => (
-        <span key={i} className="inline-block overflow-hidden pb-2 mr-[0.25em]">
+        <span key={i} className="inline-block overflow-hidden pb-2 mr-[0.25em] align-bottom">
           <motion.span
             initial={{ y: "110%" }}
             whileInView={{ y: 0 }}
-            viewport={{ once: true, margin: "-20%" }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.9, ease: [0.2, 0.9, 0.2, 1], delay: delay + i * 0.06 }}
             className="inline-block"
           >
