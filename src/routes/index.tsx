@@ -153,8 +153,22 @@ function Arrival() {
           <LiquidButton cursorLabel="ENTER" onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}>
             Enter the work →
           </LiquidButton>
-          <LiquidButton variant="ghost" cursorLabel="PLAY">Watch reel</LiquidButton>
         </motion.div>
+      </motion.div>
+
+      {/* Bottom-left signature tagline */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.8, duration: 1.2, ease: [0.2, 0.9, 0.2, 1] }}
+        className="absolute bottom-10 left-6 md:left-10 z-10 max-w-xs"
+      >
+        <p
+          className="floaty italic font-sans text-2xl md:text-3xl leading-tight"
+          style={{ color: "var(--color-white, #ffffff)", textShadow: "0 2px 20px rgba(0,0,0,0.35)" }}
+        >
+          Our Network is our Networth
+        </p>
       </motion.div>
 
       <motion.div
