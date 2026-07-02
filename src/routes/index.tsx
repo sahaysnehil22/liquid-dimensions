@@ -8,6 +8,7 @@ import {
 } from "@/components/experience";
 import heroVideo from "@/assets/hero-loop.mp4.asset.json";
 import bae212Photo from "@/assets/voice-bae212.jpg";
+import krynexLogo from "@/assets/krynex-logo.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
