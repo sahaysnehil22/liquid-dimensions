@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform, AnimatePresence, useMotionValue, useSp
 import Lenis from "lenis";
 import {
   AuroraBackground, LiquidButton, AtmosphereToggle, AtmosphereProvider,
-  SplitReveal, ChapterLabel, Parallax, VerticalBrand,
+  SplitReveal, ChapterLabel, Parallax,
 } from "@/components/experience";
 import heroVideo from "@/assets/hero-loop.mp4.asset.json";
 
@@ -28,7 +28,7 @@ export const Route = createFileRoute("/")({
 
 function useLenis() {
   useEffect(() => {
-    const lenis = new Lenis({ duration: 1.4, easing: (t) => 1 - Math.pow(1 - t, 3) });
+    const lenis = new Lenis({ duration: 0.9, easing: (t) => 1 - Math.pow(1 - t, 3) });
     let raf = 0;
     const loop = (t: number) => { lenis.raf(t); raf = requestAnimationFrame(loop); };
     raf = requestAnimationFrame(loop);
