@@ -556,7 +556,7 @@ function Work() {
 /* CHAPTER — MEMORY WALL (testimonials as collectibles) */
 type Memory =
   | { kind: "quote"; n: string; r: string; q: string; a: string }
-  | { kind: "frame"; n: string; r: string; q: string; a: string; project?: string }
+  | { kind: "frame"; n: string; r: string; q: string; a: string; project?: string; photo?: string }
   | { kind: "signature"; n: string; r: string; q: string; a: string }
   | { kind: "logo"; n: string; r: string; q: string; a: string; brand?: string; sub?: string };
 
