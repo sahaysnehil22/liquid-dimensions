@@ -64,11 +64,41 @@
   --input: oklch(0.9 0.01 260);
   --ring: oklch(0.7 0.05 280);
 
-  /* Aurora palette – warm pastels for animated gradients */
-  --aurora-1: oklch(0.88 0.08 20);   /* rose quartz */
-  --aurora-2: oklch(0.9 0.07 220);   /* ice blue */
-  --aurora-3: oklch(0.92 0.06 160);  /* mint vapor */
-  --aurora-4: oklch(0.9 0.09 310);   /* lavender mist */
+  /* Aurora palette – default atmosphere */
+  --aurora-1: oklch(0.88 0.08 20);
+  --aurora-2: oklch(0.9 0.07 220);
+  --aurora-3: oklch(0.92 0.06 160);
+  --aurora-4: oklch(0.9 0.09 310);
+  transition: --aurora-1 1.2s ease, --aurora-2 1.2s ease, --aurora-3 1.2s ease, --aurora-4 1.2s ease;
+}
+
+/* --- Atmosphere modes (light-always, mood shifts) --- */
+[data-atmosphere="aurora"] {
+  --aurora-1: oklch(0.9 0.06 250);
+  --aurora-2: oklch(0.9 0.07 210);
+  --aurora-3: oklch(0.94 0.04 190);
+  --aurora-4: oklch(0.9 0.09 310);
+}
+[data-atmosphere="sunrise"] {
+  --aurora-1: oklch(0.92 0.09 55);
+  --aurora-2: oklch(0.94 0.07 80);
+  --aurora-3: oklch(0.96 0.05 90);
+  --aurora-4: oklch(0.9 0.1 30);
+  --background: oklch(0.99 0.012 85);
+}
+[data-atmosphere="ocean"] {
+  --aurora-1: oklch(0.9 0.07 230);
+  --aurora-2: oklch(0.92 0.06 200);
+  --aurora-3: oklch(0.94 0.05 175);
+  --aurora-4: oklch(0.9 0.08 250);
+  --background: oklch(0.985 0.008 210);
+}
+[data-atmosphere="bloom"] {
+  --aurora-1: oklch(0.9 0.09 10);
+  --aurora-2: oklch(0.9 0.09 320);
+  --aurora-3: oklch(0.94 0.06 60);
+  --aurora-4: oklch(0.88 0.1 340);
+  --background: oklch(0.99 0.012 350);
 }
 
 .dark {
