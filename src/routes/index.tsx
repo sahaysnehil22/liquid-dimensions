@@ -801,7 +801,7 @@ function Contact() {
         </div>
 
         <div className="mt-20 flex flex-wrap items-center justify-center gap-8 text-eyebrow">
-          <span>hello@antigravity.studio</span>
+          <span>hello@krynex.studio</span>
           <span>·</span>
           <span>+1 (415) 555 0119</span>
           <span>·</span>
@@ -950,7 +950,7 @@ function EndingSequence() {
         <div className="mt-24 grid gap-12 md:grid-cols-4 text-sm">
           <div>
             <div className="text-eyebrow mb-3">Contact</div>
-            <p className="text-foreground/70">hello@antigravity.studio</p>
+            <p className="text-foreground/70">hello@krynex.studio</p>
             <p className="text-foreground/70">+1 (415) 555 0119</p>
           </div>
           <div>
