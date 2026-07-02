@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform, AnimatePresence, useMotionValue, useSp
 import Lenis from "lenis";
 import {
   AuroraBackground, LiquidButton, AtmosphereToggle, AtmosphereProvider,
-  SplitReveal, ChapterLabel, Parallax, Marquee, VerticalBrand,
+  SplitReveal, ChapterLabel, Parallax, VerticalBrand,
 } from "@/components/experience";
 import heroVideo from "@/assets/hero-loop.mp4.asset.json";
 
