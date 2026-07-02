@@ -4,6 +4,7 @@ import { AuroraBackground, AtmosphereProvider, ChapterLabel, SplitReveal, Liquid
 import paperfellowsHero from "@/assets/paperfellows-hero.png.asset.json";
 import cryptosimHero from "@/assets/cryptosim-hero.png.asset.json";
 import leadgenHero from "@/assets/leadgen-hero.png.asset.json";
+import krynexLogo from "@/assets/krynex-logo.png.asset.json";
 
 const HERO_IMAGES: Record<string, { url: string; alt: string; href?: string }> = {
   paperfellows: { url: paperfellowsHero.url, alt: "PaperFellows storefront", href: "https://paperfellows.vercel.app/" },
