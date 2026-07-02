@@ -111,10 +111,6 @@ function Arrival() {
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.25]);
   const opacity = useTransform(scrollYProgress, [0, 0.85], [1, 0]);
   const y = useTransform(scrollYProgress, [0, 1], [0, -160]);
-  const mx = useMotionValue(0);
-  const my = useMotionValue(0);
-  const tx = useSpring(mx, { stiffness: 60, damping: 20 });
-  const ty = useSpring(my, { stiffness: 60, damping: 20 });
 
   // ambient particles
   const particles = Array.from({ length: 24 }, (_, i) => i);
@@ -123,14 +119,9 @@ function Arrival() {
     <section
       id="top" ref={ref}
       className="relative min-h-[100dvh] flex flex-col items-center justify-center px-6 overflow-hidden"
-      onMouseMove={(e) => {
-        const r = (e.currentTarget as HTMLElement).getBoundingClientRect();
-        mx.set((e.clientX - r.width / 2) / r.width * 40);
-        my.set((e.clientY - r.height / 2) / r.height * 40);
-      }}
     >
       {/* Cinematic looping video background */}
-      <motion.div style={{ scale, opacity, y, x: tx }} className="absolute inset-0 z-0">
+      <motion.div style={{ scale, opacity, y }} className="absolute inset-0 z-0">
         <motion.video
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -154,7 +145,8 @@ function Arrival() {
       </motion.div>
 
       {/* Floating depth particles */}
-      <motion.div style={{ y, opacity, x: ty }} className="pointer-events-none absolute inset-0 z-[1]">
+      <motion.div style={{ y, opacity }} className="pointer-events-none absolute inset-0 z-[1]">
+
         {particles.map((i) => {
           const size = 2 + (i % 4);
           const left = (i * 41) % 100;
