@@ -37,6 +37,8 @@ function useLenis() {
 }
 
 function Nav() {
+  const [open, setOpen] = useState(false);
+  const links = ["Story", "Services", "Work", "Voices", "Contact"];
   return (
     <header className="fixed top-0 inset-x-0 z-50 flex items-center justify-between px-6 md:px-10 py-5">
       <a href="#top" className="flex items-center gap-2 font-display text-xl tracking-tight" data-cursor="hover" data-cursor-label="TOP">
@@ -44,13 +46,59 @@ function Nav() {
         antigravity
       </a>
       <nav className="hidden md:flex items-center gap-8 text-sm text-foreground/70">
-        {["Story","Services","Work","Voices","Contact"].map((l) => (
+        {links.map((l) => (
           <a key={l} href={`#${l.toLowerCase()}`} data-cursor="hover" className="hover:text-foreground transition-colors">{l}</a>
         ))}
       </nav>
-      <div className="flex items-center gap-3">
+      <div className="hidden md:flex items-center gap-3">
         <AtmosphereToggle />
       </div>
+      {/* Mobile hamburger */}
+      <button
+        onClick={() => setOpen((o) => !o)}
+        aria-label="Toggle menu"
+        aria-expanded={open}
+        className="md:hidden relative z-[60] size-11 rounded-full liquid flex flex-col items-center justify-center gap-1.5"
+      >
+        <span className={`block h-px w-5 bg-foreground transition-transform duration-300 ${open ? "translate-y-[3px] rotate-45" : ""}`} />
+        <span className={`block h-px w-5 bg-foreground transition-transform duration-300 ${open ? "-translate-y-[3px] -rotate-45" : ""}`} />
+      </button>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden fixed inset-0 z-40 backdrop-blur-2xl flex flex-col items-center justify-center gap-8 px-6"
+            style={{ background: "color-mix(in oklab, var(--background) 85%, transparent)" }}
+          >
+            <nav className="flex flex-col items-center gap-6 text-3xl font-display">
+              {links.map((l, i) => (
+                <motion.a
+                  key={l}
+                  href={`#${l.toLowerCase()}`}
+                  onClick={() => setOpen(false)}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 + i * 0.06, duration: 0.5 }}
+                  className="hover:italic"
+                >
+                  {l}
+                </motion.a>
+              ))}
+            </nav>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 + links.length * 0.06, duration: 0.5 }}
+              className="mt-6"
+            >
+              <AtmosphereToggle />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
