@@ -49,107 +49,48 @@ export function AuroraBackground() {
   );
 }
 
-/* ---------- Context-aware cursor ---------- */
+/* ---------- Custom cursor (disabled — using native cursor) ---------- */
 export function CustomCursor() {
-  const x = useMotionValue(-100);
-  const y = useMotionValue(-100);
-  const dotX = useSpring(x, { stiffness: 1400, damping: 60, mass: 0.15 });
-  const dotY = useSpring(y, { stiffness: 1400, damping: 60, mass: 0.15 });
-  const ringX = useSpring(x, { stiffness: 500, damping: 35, mass: 0.4 });
-  const ringY = useSpring(y, { stiffness: 500, damping: 35, mass: 0.4 });
-  const [mode, setMode] = useState<{ kind: string; label?: string }>({ kind: "default" });
-  const [isTouch, setIsTouch] = useState(false);
-  const [visible, setVisible] = useState(false);
+  return null;
+}
 
-  useEffect(() => {
-    if (matchMedia("(pointer: coarse)").matches) { setIsTouch(true); return; }
-    document.documentElement.classList.add("cursor-none");
-    const move = (e: MouseEvent) => { x.set(e.clientX); y.set(e.clientY); setVisible(true); };
-    const leave = () => setVisible(false);
-    const over = (e: MouseEvent) => {
-      const t = e.target as HTMLElement;
-      const el = t.closest("[data-cursor],a,button,input,textarea,label,h1,h2,img,video");
-      if (!el) return setMode({ kind: "default" });
-      const cur = (el as HTMLElement).dataset.cursor;
-      const label = (el as HTMLElement).dataset.cursorLabel;
-      if (cur === "play") setMode({ kind: "play", label: label || "PLAY" });
-      else if (cur === "drag") setMode({ kind: "drag", label: label || "DRAG" });
-      else if (cur === "open") setMode({ kind: "hover", label: label || "OPEN" });
-      else if (cur === "explore") setMode({ kind: "hover", label: label || "EXPLORE" });
-      else if (cur === "hover") setMode({ kind: "hover", label });
-      else if (el.tagName === "A" || el.tagName === "BUTTON") setMode({ kind: "hover", label });
-      else if (el.tagName === "INPUT" || el.tagName === "TEXTAREA" || el.tagName === "LABEL") setMode({ kind: "text" });
-      else if (el.tagName === "IMG" || el.tagName === "VIDEO") setMode({ kind: "hover", label: "VIEW" });
-      else if (el.tagName === "H1" || el.tagName === "H2") setMode({ kind: "bloom" });
-      else setMode({ kind: "default" });
-    };
-    window.addEventListener("mousemove", move);
-    window.addEventListener("mouseover", over);
-    window.addEventListener("mouseleave", leave);
-    return () => {
-      window.removeEventListener("mousemove", move);
-      window.removeEventListener("mouseover", over);
-      window.removeEventListener("mouseleave", leave);
-      document.documentElement.classList.remove("cursor-none");
-    };
-  }, [x, y]);
-
-  if (isTouch) return null;
-
-  const isHover = mode.kind === "hover" || mode.kind === "play" || mode.kind === "drag";
-  const ringSize = mode.kind === "text" ? 4 : mode.kind === "bloom" ? 90 : isHover ? 74 : 30;
-  const ringHeight = mode.kind === "text" ? 24 : ringSize;
-
+/* ---------- Vertical editorial branding ---------- */
+export function VerticalBrand({
+  side = "left",
+  top = "10%",
+  size = "clamp(4rem, 10vw, 9rem)",
+  opacity = 0.06,
+  text = "ANTIGRAVITY",
+  parallax = 0,
+}: {
+  side?: "left" | "right";
+  top?: string;
+  size?: string;
+  opacity?: number;
+  text?: string;
+  parallax?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const y = useTransform(scrollYProgress, [0, 1], [parallax, -parallax]);
   return (
-    <>
+    <div ref={ref} className="pointer-events-none absolute inset-0 overflow-hidden select-none" aria-hidden>
       <motion.div
-        aria-hidden
-        animate={{
-          width: ringSize, height: ringHeight,
-          opacity: visible ? (mode.kind === "bloom" ? 0.4 : 0.9) : 0,
-          borderRadius: mode.kind === "text" ? 2 : 999,
-        }}
-        transition={{ type: "spring", stiffness: 500, damping: 30, mass: 0.4 }}
-        className="pointer-events-none fixed top-0 left-0 z-[100] border mix-blend-difference flex items-center justify-center"
         style={{
-          x: ringX, y: ringY, translateX: "-50%", translateY: "-50%",
-          borderColor: "color-mix(in oklab, white 80%, transparent)",
-          background: mode.kind === "bloom"
-            ? "radial-gradient(circle, color-mix(in oklab, var(--aurora-4) 60%, transparent), transparent 70%)"
-            : "transparent",
+          y,
+          top,
+          fontSize: size,
+          opacity,
+          writingMode: "vertical-rl",
+          textOrientation: "mixed",
+          letterSpacing: "0.35em",
+          [side]: "0.5rem",
         } as any}
+        className="absolute text-display font-light text-foreground uppercase whitespace-nowrap"
       >
-        <AnimatePresence>
-          {isHover && mode.label && (
-            <motion.span
-              key={mode.label}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              transition={{ duration: 0.12 }}
-              className="text-[9px] tracking-[0.28em] font-medium text-white uppercase select-none"
-            >
-              {mode.label}
-            </motion.span>
-          )}
-          {mode.kind === "play" && !mode.label && (
-            <motion.span initial={{ scale: 0 }} animate={{ scale: 1 }} className="text-white text-xs">▶</motion.span>
-          )}
-        </AnimatePresence>
+        {text}
       </motion.div>
-      <motion.div
-        aria-hidden
-        animate={{ opacity: visible && mode.kind === "default" ? 0.9 : 0, scale: mode.kind === "default" ? 1 : 0 }}
-        transition={{ duration: 0.15 }}
-        style={{ x: dotX, y: dotY, translateX: "-50%", translateY: "-50%" }}
-        className="pointer-events-none fixed top-0 left-0 z-[100] size-2 rounded-full mix-blend-difference"
-      >
-        <div className="size-full rounded-full" style={{
-          background: "radial-gradient(circle, white 30%, var(--aurora-4) 100%)",
-          filter: "blur(0.5px)",
-        }} />
-      </motion.div>
-    </>
+    </div>
   );
 }
 

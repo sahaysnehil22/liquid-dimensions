@@ -3,10 +3,10 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
 import Lenis from "lenis";
 import {
-  AuroraBackground, CustomCursor, LiquidButton, AtmosphereToggle, AtmosphereProvider,
-  SplitReveal, ChapterLabel, Parallax, Marquee,
+  AuroraBackground, LiquidButton, AtmosphereToggle, AtmosphereProvider,
+  SplitReveal, ChapterLabel, Parallax, VerticalBrand,
 } from "@/components/experience";
-import heroAtmosphere from "@/assets/hero-atmosphere.jpg";
+import heroVideo from "@/assets/hero-loop.mp4.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -80,14 +80,21 @@ function Arrival() {
         my.set((e.clientY - r.height / 2) / r.height * 40);
       }}
     >
-      {/* Cinematic background layer */}
+      {/* Cinematic looping video background */}
       <motion.div style={{ scale, opacity, y, x: tx }} className="absolute inset-0 z-0">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url(${heroAtmosphere})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          filter: "saturate(1.05) contrast(1.02)",
-        }} />
+        <motion.video
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.6, ease: [0.2, 0.9, 0.2, 1] }}
+          src={heroVideo.url}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster=""
+          className="absolute inset-0 w-full h-full object-cover"
+        />
         {/* colored atmosphere wash — reacts to atmosphere tokens */}
         <div className="absolute inset-0" style={{
           background: "linear-gradient(180deg, color-mix(in oklab, var(--background) 40%, transparent) 0%, color-mix(in oklab, var(--background) 10%, transparent) 40%, color-mix(in oklab, var(--background) 85%, transparent) 100%)",
@@ -95,16 +102,6 @@ function Arrival() {
         <div className="absolute inset-0 mix-blend-soft-light opacity-70" style={{
           background: "radial-gradient(ellipse at 30% 20%, var(--aurora-1), transparent 55%), radial-gradient(ellipse at 80% 80%, var(--aurora-4), transparent 55%)",
         }} />
-        {/* subtle sweep light */}
-        <motion.div
-          animate={{ x: ["-30%", "30%"] }}
-          transition={{ duration: 16, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
-          className="absolute -inset-x-40 top-0 h-full opacity-40"
-          style={{
-            background: "linear-gradient(100deg, transparent 40%, color-mix(in oklab, white 40%, transparent) 50%, transparent 60%)",
-            mixBlendMode: "overlay",
-          }}
-        />
       </motion.div>
 
       {/* Floating depth particles */}
@@ -156,8 +153,22 @@ function Arrival() {
           <LiquidButton cursorLabel="ENTER" onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}>
             Enter the work →
           </LiquidButton>
-          <LiquidButton variant="ghost" cursorLabel="PLAY">Watch reel</LiquidButton>
         </motion.div>
+      </motion.div>
+
+      {/* Bottom-left signature tagline */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.8, duration: 1.2, ease: [0.2, 0.9, 0.2, 1] }}
+        className="absolute bottom-10 left-6 md:left-10 z-10 max-w-xs"
+      >
+        <p
+          className="floaty italic font-sans text-2xl md:text-3xl leading-tight"
+          style={{ color: "var(--color-white, #ffffff)", textShadow: "0 2px 20px rgba(0,0,0,0.35)" }}
+        >
+          Our Network is our Networth
+        </p>
       </motion.div>
 
       <motion.div
@@ -387,7 +398,7 @@ function Services() {
 /* CHAPTER — EDITORIAL MANIFESTO */
 function Manifesto() {
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
   const verses = [
     { verb: "CREATE", body: "We treat the blank page as sacred. Every project begins with a question, not an assumption." },
     { verb: "DESIGN", body: "Systems over screens. Language over decoration. Restraint is our loudest instrument." },
@@ -398,15 +409,19 @@ function Manifesto() {
   const [active, setActive] = useState(0);
   useEffect(() => {
     const unsub = scrollYProgress.on("change", (v) => {
-      const i = Math.min(verses.length - 1, Math.floor(v * verses.length));
+      // Map the sticky scroll range evenly across all verses, so every one gets equal dwell time.
+      const clamped = Math.max(0, Math.min(0.9999, v));
+      const i = Math.min(verses.length - 1, Math.floor(clamped * verses.length));
       setActive(i);
     });
     return () => unsub();
   }, [scrollYProgress, verses.length]);
 
+  // Give each verse a full viewport of sticky dwell + one extra for entry/exit smoothness.
   return (
-    <section id="manifesto" ref={ref} className="relative" style={{ height: `${verses.length * 90}vh` }}>
+    <section id="manifesto" ref={ref} className="relative" style={{ height: `${verses.length * 100 + 20}vh` }}>
       <div className="sticky top-0 h-screen flex items-center px-6 md:px-16 overflow-hidden">
+
         {/* evolving background */}
         <motion.div
           key={active}
@@ -464,7 +479,7 @@ function Work() {
     { t: "Ozone", c: "Climate tech", tags: "Brand · Web · Data viz", a: "var(--aurora-4)" },
   ];
   return (
-    <section id="work" className="relative py-40 px-6 md:px-10">
+    <section id="work" className="relative pt-16 md:pt-24 pb-40 px-6 md:px-10">
       <div className="max-w-7xl mx-auto">
         <ChapterLabel n="04" title="Selected Work" />
         <h2 className="text-display text-6xl md:text-8xl mt-6 max-w-4xl">
@@ -962,17 +977,30 @@ function Index() {
   return (
     <main className="relative">
       <AuroraBackground />
-      <CustomCursor />
       <Nav />
       <Arrival />
-      <Story />
-      <Services />
-      <Manifesto />
-      <Marquee items={["Interactive", "Editorial", "Cinematic", "Human", "Precise", "Alive"]} />
+      <div className="relative">
+        <VerticalBrand side="left" top="6%" opacity={0.05} parallax={80} />
+        <Story />
+      </div>
+      <div className="relative">
+        <VerticalBrand side="right" top="12%" opacity={0.04} parallax={120} text="ANTIGRAVITY · STUDIO" />
+        <Services />
+      </div>
+      <div className="relative">
+        <VerticalBrand side="left" top="20%" opacity={0.05} parallax={60} text="MANIFESTO" size="clamp(3rem, 8vw, 7rem)" />
+        <Manifesto />
+      </div>
       <Work />
-      <Testimonials />
+      <div className="relative">
+        <VerticalBrand side="right" top="8%" opacity={0.05} parallax={100} text="VOICES" />
+        <Testimonials />
+      </div>
       <Stats />
-      <Contact />
+      <div className="relative">
+        <VerticalBrand side="left" top="15%" opacity={0.06} parallax={70} text="ANTIGRAVITY" />
+        <Contact />
+      </div>
       <EndingSequence />
     </main>
   );

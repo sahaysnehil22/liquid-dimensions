@@ -230,7 +230,6 @@
     inset 0 -8px 20px -8px color-mix(in oklab, var(--aurora-4) 60%, transparent),
     0 12px 30px -12px color-mix(in oklab, var(--foreground) 30%, transparent);
   transition: transform 0.4s cubic-bezier(.2,.9,.2,1), box-shadow 0.4s, background 0.4s;
-  cursor: none;
 }
 @utility liquid-btn-hover {
   &:hover {
@@ -262,6 +261,12 @@
 }
 @utility float { animation: float-y 6s ease-in-out infinite; }
 
+@keyframes floaty {
+  0%,100% { transform: translateY(0) rotate(-0.5deg); }
+  50%     { transform: translateY(-10px) rotate(0.5deg); }
+}
+@utility floaty { animation: floaty 2.6s ease-in-out infinite; }
+
 @keyframes shine {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
@@ -280,5 +285,3 @@
   animation: shine 6s linear infinite;
 }
 
-/* Hide native cursor when custom cursor active */
-.cursor-none, .cursor-none * { cursor: none !important; }
