@@ -479,7 +479,7 @@ function Work() {
     { t: "Ozone", c: "Climate tech", tags: "Brand · Web · Data viz", a: "var(--aurora-4)" },
   ];
   return (
-    <section id="work" className="relative py-40 px-6 md:px-10">
+    <section id="work" className="relative pt-16 md:pt-24 pb-40 px-6 md:px-10">
       <div className="max-w-7xl mx-auto">
         <ChapterLabel n="04" title="Selected Work" />
         <h2 className="text-display text-6xl md:text-8xl mt-6 max-w-4xl">
