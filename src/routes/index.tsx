@@ -8,7 +8,6 @@ import {
 } from "@/components/experience";
 import heroVideo from "@/assets/hero-loop.mp4.asset.json";
 import bae212Photo from "@/assets/voice-bae212.jpg";
-import krynexLogo from "@/assets/krynex-logo.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -43,8 +42,8 @@ function Nav() {
   const links = ["Story", "Services", "Work", "Voices", "Contact"];
   return (
     <header className="fixed top-0 inset-x-0 z-50 flex items-center justify-between px-6 md:px-10 py-5">
-      <a href="#top" className="flex items-center gap-2 font-display text-xl tracking-tight" data-cursor="hover" data-cursor-label="TOP">
-        <img src={krynexLogo.url} alt="KRYNEX Studio" className="h-11 w-auto object-contain" />
+      <a href="#top" className="flex items-center gap-2" data-cursor="hover" data-cursor-label="TOP">
+        <span className="font-display text-lg md:text-xl tracking-tight text-foreground">KRYNEX STUDIO</span>
       </a>
       <nav className="hidden md:flex items-center gap-8 text-sm text-foreground/70">
         {links.map((l) => (

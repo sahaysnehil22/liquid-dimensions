@@ -4,7 +4,6 @@ import { AuroraBackground, AtmosphereProvider, ChapterLabel, SplitReveal, Liquid
 import paperfellowsHero from "@/assets/paperfellows-hero.png.asset.json";
 import cryptosimHero from "@/assets/cryptosim-hero.png.asset.json";
 import leadgenHero from "@/assets/leadgen-hero.png.asset.json";
-import krynexLogo from "@/assets/krynex-logo.png.asset.json";
 
 const HERO_IMAGES: Record<string, { url: string; alt: string; href?: string }> = {
   paperfellows: { url: paperfellowsHero.url, alt: "PaperFellows storefront", href: "https://paperfellows.vercel.app/" },
@@ -152,8 +151,8 @@ function CaseStudy() {
       <div className="relative min-h-screen">
         <AuroraBackground />
         <header className="relative z-10 flex items-center justify-between px-6 md:px-10 py-5">
-          <Link to="/" className="flex items-center gap-2 font-display text-xl tracking-tight" data-cursor="hover">
-            <img src={krynexLogo.url} alt="KRYNEX Studio" className="h-11 w-auto object-contain" style={{ mixBlendMode: "screen" }} />
+          <Link to="/" className="flex items-center gap-2" data-cursor="hover">
+            <span className="font-display text-lg md:text-xl tracking-tight text-foreground">KRYNEX STUDIO</span>
           </Link>
           <Link to="/" hash="work" className="text-eyebrow hover:text-foreground transition-colors">
             ← All work

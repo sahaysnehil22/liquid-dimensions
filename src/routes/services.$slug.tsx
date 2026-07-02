@@ -1,6 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { AuroraBackground, AtmosphereProvider, ChapterLabel, SplitReveal, LiquidButton } from "@/components/experience";
-import krynexLogo from "@/assets/krynex-logo.png.asset.json";
 
 type Service = {
   slug: string;
@@ -139,8 +138,8 @@ function ServiceDetail() {
       <div className="relative min-h-screen">
         <AuroraBackground />
         <header className="relative z-10 flex items-center justify-between px-6 md:px-10 py-5">
-          <Link to="/" className="flex items-center gap-2 font-display text-xl tracking-tight" data-cursor="hover">
-            <img src={krynexLogo.url} alt="KRYNEX Studio" className="h-11 w-auto object-contain" style={{ mixBlendMode: "screen" }} />
+          <Link to="/" className="flex items-center gap-2" data-cursor="hover">
+            <span className="font-display text-lg md:text-xl tracking-tight text-foreground">KRYNEX STUDIO</span>
           </Link>
           <Link to="/" hash="services" className="text-eyebrow hover:text-foreground transition-colors">
             ← All services
