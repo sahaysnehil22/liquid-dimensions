@@ -603,9 +603,10 @@ function Testimonials() {
                       <div className="absolute inset-0" style={{
                         background: `linear-gradient(135deg, ${m.a}, color-mix(in oklab, white 60%, ${m.a}))`,
                       }} />
-                      <div className="absolute inset-0 flex items-center justify-center text-6xl text-display text-foreground/40">
+                      <div className="absolute inset-0 hidden md:flex items-center justify-center text-6xl text-display text-foreground/40">
                         {m.n.charAt(0)}
                       </div>
+
                       <motion.div
                         animate={{ backgroundPosition: ["0% 0%", "100% 100%"] }}
                         transition={{ duration: 8, repeat: Infinity, repeatType: "reverse" }}
