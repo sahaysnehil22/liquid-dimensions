@@ -1004,7 +1004,7 @@ function EndingSequence() {
         </div>
 
         <div className="mt-16 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-foreground/50 border-t border-foreground/10 pt-8">
-          <p>© {new Date().getFullYear()} Antigravity Studio · An interactive fiction.</p>
+          <p>© {new Date().getFullYear()} KRYNEX Studio · An interactive fiction.</p>
           <p className="md:ml-auto tracking-[0.28em] uppercase text-right">Crafted with intention</p>
         </div>
       </div>
