@@ -204,7 +204,7 @@ function CaseStudy() {
 
         <section className="relative px-6 md:px-10 pb-24">
           <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-            {project.metrics.map((m) => (
+            {project.metrics.map((m: { label: string; value: string }) => (
               <div key={m.label} className="liquid rounded-3xl p-8">
                 <div className="text-display text-5xl md:text-6xl shimmer-text">{m.value}</div>
                 <div className="text-eyebrow mt-3">{m.label}</div>
