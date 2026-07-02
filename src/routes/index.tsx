@@ -649,19 +649,19 @@ function Testimonials() {
                   </div>
                 )}
                 {m.kind === "logo" && (
-                  <div className="relative h-full flex flex-col justify-between">
+                  <div className="relative h-full flex flex-col justify-between gap-6">
                     <div className="flex items-center gap-4">
-                      <div className="size-14 rounded-full flex items-center justify-center font-display text-2xl" style={{
+                      <div className="size-14 rounded-full flex items-center justify-center font-display text-2xl text-foreground/80" style={{
                         background: `conic-gradient(from 0deg, ${m.a}, color-mix(in oklab, white 50%, ${m.a}), ${m.a})`,
                       }}>
-                        F
+                        {m.n.charAt(0).toUpperCase()}
                       </div>
                       <div>
-                        <div className="font-display text-xl">Fieldnotes</div>
-                        <div className="text-eyebrow">Est. Publication</div>
+                        <div className="font-display text-xl">{m.brand ?? m.n}</div>
+                        <div className="text-eyebrow">{m.sub ?? m.r}</div>
                       </div>
                     </div>
-                    <p className="font-display text-2xl md:text-3xl italic leading-snug">"{m.q}"</p>
+                    <p className="font-display text-xl md:text-2xl italic leading-snug">"{m.q}"</p>
                     <footer className="text-eyebrow">— {m.n} · {m.r}</footer>
                   </div>
                 )}
