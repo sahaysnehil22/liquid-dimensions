@@ -398,7 +398,7 @@ function Services() {
 /* CHAPTER — EDITORIAL MANIFESTO */
 function Manifesto() {
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
   const verses = [
     { verb: "CREATE", body: "We treat the blank page as sacred. Every project begins with a question, not an assumption." },
     { verb: "DESIGN", body: "Systems over screens. Language over decoration. Restraint is our loudest instrument." },
@@ -409,15 +409,19 @@ function Manifesto() {
   const [active, setActive] = useState(0);
   useEffect(() => {
     const unsub = scrollYProgress.on("change", (v) => {
-      const i = Math.min(verses.length - 1, Math.floor(v * verses.length));
+      // Map the sticky scroll range evenly across all verses, so every one gets equal dwell time.
+      const clamped = Math.max(0, Math.min(0.9999, v));
+      const i = Math.min(verses.length - 1, Math.floor(clamped * verses.length));
       setActive(i);
     });
     return () => unsub();
   }, [scrollYProgress, verses.length]);
 
+  // Give each verse a full viewport of sticky dwell + one extra for entry/exit smoothness.
   return (
-    <section id="manifesto" ref={ref} className="relative" style={{ height: `${verses.length * 90}vh` }}>
+    <section id="manifesto" ref={ref} className="relative" style={{ height: `${verses.length * 100 + 20}vh` }}>
       <div className="sticky top-0 h-screen flex items-center px-6 md:px-16 overflow-hidden">
+
         {/* evolving background */}
         <motion.div
           key={active}
