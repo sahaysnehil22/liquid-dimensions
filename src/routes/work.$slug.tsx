@@ -153,8 +153,7 @@ function CaseStudy() {
         <AuroraBackground />
         <header className="relative z-10 flex items-center justify-between px-6 md:px-10 py-5">
           <Link to="/" className="flex items-center gap-2 font-display text-xl tracking-tight" data-cursor="hover">
-            <span className="inline-block size-2.5 rounded-full bg-foreground" />
-            antigravity
+            <img src={krynexLogo.url} alt="KRYNEX Studio" className="h-11 w-auto object-contain" style={{ mixBlendMode: "screen" }} />
           </Link>
           <Link to="/" hash="work" className="text-eyebrow hover:text-foreground transition-colors">
             ← All work
