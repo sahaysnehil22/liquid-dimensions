@@ -44,7 +44,7 @@ function Nav() {
         antigravity
       </a>
       <nav className="hidden md:flex items-center gap-8 text-sm text-foreground/70">
-        {["Story","Services","Manifesto","Work","Voices","Contact"].map((l) => (
+        {["Story","Services","Work","Voices","Contact"].map((l) => (
           <a key={l} href={`#${l.toLowerCase()}`} data-cursor="hover" className="hover:text-foreground transition-colors">{l}</a>
         ))}
       </nav>
@@ -170,13 +170,13 @@ function Story() {
     { year: "2026", title: "Now", body: "Building the next generation of interactive brands with AI-native tools." },
   ];
   return (
-    <section id="story" className="relative py-40 px-6 md:px-10">
+    <section id="story" className="relative py-32 px-6 md:px-10">
       <div className="max-w-6xl mx-auto">
         <ChapterLabel n="01" title="The Story" />
         <h2 className="text-display text-6xl md:text-8xl mt-6 max-w-3xl">
           <SplitReveal text="A short walk through our memory." />
         </h2>
-        <div className="mt-24 grid gap-8 md:grid-cols-2">
+        <div className="mt-12 grid gap-8 md:grid-cols-2">
           {items.map((it, i) => (
             <Parallax key={it.year} offset={i % 2 ? 30 : 60}>
               <motion.div
@@ -333,16 +333,13 @@ function Services() {
   const [active, setActive] = useState<number | null>(null);
 
   return (
-    <section id="services" className="relative py-40 px-6 md:px-10">
+    <section id="services" className="relative py-32 px-6 md:px-10">
       <div className="max-w-7xl mx-auto">
         <ChapterLabel n="02" title="Services" />
         <h2 className="text-display text-6xl md:text-8xl mt-6 max-w-4xl">
           <SplitReveal text="Six artifacts. One studio." />
         </h2>
-        <p className="mt-6 max-w-xl text-foreground/60">
-          Each service has its own material. No repeated shapes. Hover to bring it to life.
-        </p>
-        <div className="mt-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {artifacts.map((a, i) => (
             <motion.article
               key={a.name}
@@ -725,9 +722,9 @@ function Contact() {
                 transition={{ duration: 0.8 }}
                 className="text-left grid gap-10"
               >
-                <SculpturalField label="Your name" value={name} onChange={setName} />
-                <SculpturalField label="Where to reply" value={email} onChange={setEmail} type="email" />
-                <SculpturalField label="A few sentences about what you're building" value={message} onChange={setMessage} multiline />
+                <SculpturalField label="Name" value={name} onChange={setName} />
+                <SculpturalField label="Email Address" value={email} onChange={setEmail} type="email" required />
+                <SculpturalField label="Problem — Statement" value={message} onChange={setMessage} multiline />
                 <div className="pt-4 flex flex-wrap items-center justify-between gap-4">
                   <span className="text-xs text-foreground/50">We reply within two working days.</span>
                   <LiquidButton cursorLabel="SEND">Send transmission →</LiquidButton>
@@ -944,7 +941,7 @@ function EndingSequence() {
 
         <div className="mt-16 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-foreground/50 border-t border-foreground/10 pt-8">
           <p>© {new Date().getFullYear()} Antigravity Studio · An interactive fiction.</p>
-          <p className="tracking-[0.28em] uppercase">Crafted with intention · No template · No shortcut</p>
+          <p className="md:ml-auto tracking-[0.28em] uppercase text-right">Crafted with intention</p>
         </div>
       </div>
     </footer>
