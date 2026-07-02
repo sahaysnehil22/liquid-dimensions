@@ -3,10 +3,10 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
 import Lenis from "lenis";
 import {
-  AuroraBackground, CustomCursor, LiquidButton, AtmosphereToggle, AtmosphereProvider,
-  SplitReveal, ChapterLabel, Parallax, Marquee,
+  AuroraBackground, LiquidButton, AtmosphereToggle, AtmosphereProvider,
+  SplitReveal, ChapterLabel, Parallax, Marquee, VerticalBrand,
 } from "@/components/experience";
-import heroAtmosphere from "@/assets/hero-atmosphere.jpg";
+import heroVideo from "@/assets/hero-loop.mp4.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
