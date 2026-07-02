@@ -134,7 +134,7 @@ function Arrival() {
         >
           Independent studio · Est. 2019 · Everywhere
         </motion.div>
-        <h1 className="text-display text-[clamp(3rem,10vw,10rem)]">
+        <h1 className="text-display text-[clamp(2.5rem,8vw,7.5rem)]">
           <SplitReveal text="We craft" delay={0.6} />
           <br />
           <span className="italic font-normal shimmer-text"><SplitReveal text="digital gravity." delay={0.9} /></span>
@@ -151,10 +151,11 @@ function Arrival() {
           className="mt-12 flex items-center justify-center gap-4"
         >
           <LiquidButton cursorLabel="ENTER" onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}>
-            Enter the work →
+            Explore →
           </LiquidButton>
         </motion.div>
       </motion.div>
+
 
       {/* Bottom-left signature tagline */}
       <motion.div
