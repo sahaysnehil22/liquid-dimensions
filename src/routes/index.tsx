@@ -973,17 +973,30 @@ function Index() {
   return (
     <main className="relative">
       <AuroraBackground />
-      <CustomCursor />
       <Nav />
       <Arrival />
-      <Story />
-      <Services />
-      <Manifesto />
-      <Marquee items={["Interactive", "Editorial", "Cinematic", "Human", "Precise", "Alive"]} />
+      <div className="relative">
+        <VerticalBrand side="left" top="6%" opacity={0.05} parallax={80} />
+        <Story />
+      </div>
+      <div className="relative">
+        <VerticalBrand side="right" top="12%" opacity={0.04} parallax={120} text="ANTIGRAVITY · STUDIO" />
+        <Services />
+      </div>
+      <div className="relative">
+        <VerticalBrand side="left" top="20%" opacity={0.05} parallax={60} text="MANIFESTO" size="clamp(3rem, 8vw, 7rem)" />
+        <Manifesto />
+      </div>
       <Work />
-      <Testimonials />
+      <div className="relative">
+        <VerticalBrand side="right" top="8%" opacity={0.05} parallax={100} text="VOICES" />
+        <Testimonials />
+      </div>
       <Stats />
-      <Contact />
+      <div className="relative">
+        <VerticalBrand side="left" top="15%" opacity={0.06} parallax={70} text="ANTIGRAVITY" />
+        <Contact />
+      </div>
       <EndingSequence />
     </main>
   );
