@@ -598,8 +598,8 @@ function Testimonials() {
                   </div>
                 )}
                 {m.kind === "frame" && (
-                  <div className="relative h-full flex gap-6 items-center">
-                    <div className="relative aspect-[3/4] h-full min-w-[35%] rounded-2xl overflow-hidden bg-foreground/5">
+                  <div className="relative h-full flex flex-col sm:flex-row gap-6 items-stretch sm:items-center">
+                    <div className="relative aspect-[3/4] w-full sm:w-auto sm:h-full sm:min-w-[35%] rounded-2xl overflow-hidden bg-foreground/5 shrink-0">
                       <div className="absolute inset-0" style={{
                         background: `linear-gradient(135deg, ${m.a}, color-mix(in oklab, white 60%, ${m.a}))`,
                       }} />
@@ -616,12 +616,13 @@ function Testimonials() {
                         }}
                       />
                     </div>
-                    <div className="flex-1">
+                    <div className="flex-1 min-w-0">
                       <p className="font-display text-xl md:text-2xl leading-snug">{m.q}</p>
                       <footer className="mt-4 text-eyebrow">— {m.n} · {m.r}</footer>
                     </div>
                   </div>
                 )}
+
                 {m.kind === "signature" && (
                   <div className="relative h-full flex flex-col justify-between">
                     <p className="text-foreground/70 text-lg leading-relaxed">{m.q}</p>
