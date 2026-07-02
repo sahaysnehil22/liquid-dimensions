@@ -1,6 +1,13 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { AuroraBackground, AtmosphereProvider, ChapterLabel, SplitReveal, LiquidButton } from "@/components/experience";
+import paperfellowsHero from "@/assets/paperfellows-hero.png.asset.json";
+import cryptosimHero from "@/assets/cryptosim-hero.png.asset.json";
+
+const HERO_IMAGES: Record<string, { url: string; alt: string; href?: string }> = {
+  paperfellows: { url: paperfellowsHero.url, alt: "PaperFellows storefront", href: "https://paperfellows.vercel.app/" },
+  cryptosim: { url: cryptosimHero.url, alt: "CryptoSim trading interface" },
+};
 
 type Project = {
   slug: string;
@@ -176,13 +183,39 @@ function CaseStudy() {
               transition={{ duration: 1.1, ease: [0.2, 0.9, 0.2, 1] }}
               className="relative aspect-[16/9] rounded-[2rem] overflow-hidden liquid"
             >
-              <div
-                className="absolute inset-0"
-                style={{
-                  background: `radial-gradient(ellipse at 30% 30%, ${project.accent}, transparent 60%), radial-gradient(ellipse at 80% 80%, var(--aurora-4), transparent 55%)`,
-                  opacity: 0.85,
-                }}
-              />
+              {HERO_IMAGES[project.slug] ? (
+                HERO_IMAGES[project.slug].href ? (
+                  <a
+                    href={HERO_IMAGES[project.slug].href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="block absolute inset-0"
+                    data-cursor="hover"
+                  >
+                    <img
+                      src={HERO_IMAGES[project.slug].url}
+                      alt={HERO_IMAGES[project.slug].alt}
+                      className="absolute inset-0 w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </a>
+                ) : (
+                  <img
+                    src={HERO_IMAGES[project.slug].url}
+                    alt={HERO_IMAGES[project.slug].alt}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                )
+              ) : (
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background: `radial-gradient(ellipse at 30% 30%, ${project.accent}, transparent 60%), radial-gradient(ellipse at 80% 80%, var(--aurora-4), transparent 55%)`,
+                    opacity: 0.85,
+                  }}
+                />
+              )}
             </motion.div>
           </div>
         </section>
