@@ -206,14 +206,31 @@ export function AtmosphereToggle() {
 /* ---------- Split text reveal ---------- */
 export function SplitReveal({ text, className = "", delay = 0 }: { text: string; className?: string; delay?: number }) {
   const words = text.split(" ");
+  const ref = useRef<HTMLSpanElement>(null);
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    if (!ref.current) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setInView(true);
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.05, rootMargin: "0px 0px -5% 0px" },
+    );
+    obs.observe(ref.current);
+    // fallback: reveal after 1.2s regardless (guards against smooth-scroll edge cases)
+    const t = setTimeout(() => setInView(true), 1200);
+    return () => { obs.disconnect(); clearTimeout(t); };
+  }, []);
   return (
-    <span className={className}>
+    <span ref={ref} className={className}>
       {words.map((w, i) => (
         <span key={i} className="inline-block overflow-hidden pb-2 mr-[0.25em] align-bottom">
           <motion.span
             initial={{ y: "110%" }}
-            whileInView={{ y: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
+            animate={inView ? { y: 0 } : { y: "110%" }}
             transition={{ duration: 0.9, ease: [0.2, 0.9, 0.2, 1], delay: delay + i * 0.06 }}
             className="inline-block"
           >
