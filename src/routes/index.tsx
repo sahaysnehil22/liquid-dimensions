@@ -555,16 +555,16 @@ function Work() {
 /* CHAPTER — MEMORY WALL (testimonials as collectibles) */
 type Memory =
   | { kind: "quote"; n: string; r: string; q: string; a: string }
-  | { kind: "frame"; n: string; r: string; q: string; a: string }
+  | { kind: "frame"; n: string; r: string; q: string; a: string; project?: string }
   | { kind: "signature"; n: string; r: string; q: string; a: string }
-  | { kind: "logo"; n: string; r: string; q: string; a: string };
+  | { kind: "logo"; n: string; r: string; q: string; a: string; brand?: string; sub?: string };
 
 function Testimonials() {
   const memories: Memory[] = [
-    { kind: "quote",     n: "Maya R.",  r: "Founder, Halcyon",     q: "They didn't just design our site. They designed how we're remembered.", a: "var(--aurora-1)" },
-    { kind: "frame",     n: "David C.", r: "CPO, Northline",       q: "The most disciplined design partner we've worked with. Every detail earned.", a: "var(--aurora-2)" },
-    { kind: "signature", n: "Priya S.", r: "Head of Brand, Ozone", q: "It felt less like a project and more like a collaboration between studios.", a: "var(--aurora-3)" },
-    { kind: "logo",      n: "Leo M.",   r: "Editor, Fieldnotes",   q: "They made the internet feel like paper again — patient, considered, human.", a: "var(--aurora-4)" },
+    { kind: "quote",     n: "mbulandr",   r: "Repeat Client · United States", q: "KryNex is the best of the best. I recommend them at the highest levels. Their empathy, understanding, and attention to detail is as good as it gets — and I have been in the industry for over 30 years at some of the best companies in the world.", a: "var(--aurora-1)" },
+    { kind: "frame",     n: "bae212",     r: "Repeat Client · United States", q: "KryNex's members go above and beyond with their work. Being non-technical I have many questions, and they are patient and accommodating with their guidance, making sure the workflows are working properly. Highly recommend KRYNEX!", a: "var(--aurora-2)", project: "Lead Generation Pipeline" },
+    { kind: "signature", n: "uvamon",     r: "Client · Mexico",               q: "Second website done with KryNex — this one was more complex. Initially we had technical difficulties, but they restarted from scratch on a different platform and everything was flawless afterwards. It will not be the last time I work with them.", a: "var(--aurora-3)" },
+    { kind: "logo",      n: "badlander37", r: "Repeat Client · United States", q: "Outstanding technical knowledge of n8n, AI integrations, and data pipelines. Communication was clear and professional throughout — proactive in identifying issues and improving the workflow beyond the original scope. Strongly recommend.", a: "var(--aurora-4)", brand: "Full-Stack & Automation", sub: "n8n · AI Workflows" },
   ];
   const [open, setOpen] = useState<number | null>(null);
 
@@ -611,10 +611,10 @@ function Testimonials() {
                       <div className="absolute inset-0" style={{
                         background: `linear-gradient(135deg, ${m.a}, color-mix(in oklab, white 60%, ${m.a}))`,
                       }} />
-                      <div className="absolute inset-0 hidden md:flex items-center justify-center text-6xl text-display text-foreground/40">
-                        {m.n.charAt(0)}
+                      <div className="absolute inset-0 hidden md:flex flex-col items-center justify-center text-center px-4">
+                        <div className="text-5xl text-display text-foreground/50">{m.n.charAt(0).toUpperCase()}</div>
+                        {m.project && <div className="mt-3 text-eyebrow text-foreground/70">{m.project}</div>}
                       </div>
-
                       <motion.div
                         animate={{ backgroundPosition: ["0% 0%", "100% 100%"] }}
                         transition={{ duration: 8, repeat: Infinity, repeatType: "reverse" }}
@@ -626,7 +626,7 @@ function Testimonials() {
                       />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="font-display text-xl md:text-2xl leading-snug">{m.q}</p>
+                      <p className="font-display text-lg md:text-xl leading-snug">{m.q}</p>
                       <footer className="mt-4 text-eyebrow">— {m.n} · {m.r}</footer>
                     </div>
                   </div>
@@ -649,19 +649,19 @@ function Testimonials() {
                   </div>
                 )}
                 {m.kind === "logo" && (
-                  <div className="relative h-full flex flex-col justify-between">
+                  <div className="relative h-full flex flex-col justify-between gap-6">
                     <div className="flex items-center gap-4">
-                      <div className="size-14 rounded-full flex items-center justify-center font-display text-2xl" style={{
+                      <div className="size-14 rounded-full flex items-center justify-center font-display text-2xl text-foreground/80" style={{
                         background: `conic-gradient(from 0deg, ${m.a}, color-mix(in oklab, white 50%, ${m.a}), ${m.a})`,
                       }}>
-                        F
+                        {m.n.charAt(0).toUpperCase()}
                       </div>
                       <div>
-                        <div className="font-display text-xl">Fieldnotes</div>
-                        <div className="text-eyebrow">Est. Publication</div>
+                        <div className="font-display text-xl">{m.brand ?? m.n}</div>
+                        <div className="text-eyebrow">{m.sub ?? m.r}</div>
                       </div>
                     </div>
-                    <p className="font-display text-2xl md:text-3xl italic leading-snug">"{m.q}"</p>
+                    <p className="font-display text-xl md:text-2xl italic leading-snug">"{m.q}"</p>
                     <footer className="text-eyebrow">— {m.n} · {m.r}</footer>
                   </div>
                 )}
