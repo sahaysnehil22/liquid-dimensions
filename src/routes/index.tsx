@@ -555,16 +555,16 @@ function Work() {
 /* CHAPTER — MEMORY WALL (testimonials as collectibles) */
 type Memory =
   | { kind: "quote"; n: string; r: string; q: string; a: string }
-  | { kind: "frame"; n: string; r: string; q: string; a: string }
+  | { kind: "frame"; n: string; r: string; q: string; a: string; project?: string }
   | { kind: "signature"; n: string; r: string; q: string; a: string }
-  | { kind: "logo"; n: string; r: string; q: string; a: string };
+  | { kind: "logo"; n: string; r: string; q: string; a: string; brand?: string; sub?: string };
 
 function Testimonials() {
   const memories: Memory[] = [
-    { kind: "quote",     n: "Maya R.",  r: "Founder, Halcyon",     q: "They didn't just design our site. They designed how we're remembered.", a: "var(--aurora-1)" },
-    { kind: "frame",     n: "David C.", r: "CPO, Northline",       q: "The most disciplined design partner we've worked with. Every detail earned.", a: "var(--aurora-2)" },
-    { kind: "signature", n: "Priya S.", r: "Head of Brand, Ozone", q: "It felt less like a project and more like a collaboration between studios.", a: "var(--aurora-3)" },
-    { kind: "logo",      n: "Leo M.",   r: "Editor, Fieldnotes",   q: "They made the internet feel like paper again — patient, considered, human.", a: "var(--aurora-4)" },
+    { kind: "quote",     n: "mbulandr",   r: "Repeat Client · United States", q: "KryNex is the best of the best. I recommend them at the highest levels. Their empathy, understanding, and attention to detail is as good as it gets — and I have been in the industry for over 30 years at some of the best companies in the world.", a: "var(--aurora-1)" },
+    { kind: "frame",     n: "bae212",     r: "Repeat Client · United States", q: "KryNex's members go above and beyond with their work. Being non-technical I have many questions, and they are patient and accommodating with their guidance, making sure the workflows are working properly. Highly recommend KRYNEX!", a: "var(--aurora-2)", project: "Lead Generation Pipeline" },
+    { kind: "signature", n: "uvamon",     r: "Client · Mexico",               q: "Second website done with KryNex — this one was more complex. Initially we had technical difficulties, but they restarted from scratch on a different platform and everything was flawless afterwards. It will not be the last time I work with them.", a: "var(--aurora-3)" },
+    { kind: "logo",      n: "badlander37", r: "Repeat Client · United States", q: "Outstanding technical knowledge of n8n, AI integrations, and data pipelines. Communication was clear and professional throughout — proactive in identifying issues and improving the workflow beyond the original scope. Strongly recommend.", a: "var(--aurora-4)", brand: "Full-Stack & Automation", sub: "n8n · AI Workflows" },
   ];
   const [open, setOpen] = useState<number | null>(null);
 
