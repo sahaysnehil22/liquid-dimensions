@@ -8,6 +8,7 @@ import {
 } from "@/components/experience";
 import heroVideo from "@/assets/hero-loop.mp4.asset.json";
 import bae212Photo from "@/assets/voice-bae212.jpg";
+import krynexLogo from "@/assets/krynex-logo.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -43,8 +44,8 @@ function Nav() {
   return (
     <header className="fixed top-0 inset-x-0 z-50 flex items-center justify-between px-6 md:px-10 py-5">
       <a href="#top" className="flex items-center gap-2 font-display text-xl tracking-tight" data-cursor="hover" data-cursor-label="TOP">
-        <span className="inline-block size-2.5 rounded-full bg-foreground" />
-        antigravity
+        <img src={krynexLogo.url} alt="KRYNEX" className="h-7 w-auto object-contain invert" />
+        <span className="sr-only">KRYNEX</span>
       </a>
       <nav className="hidden md:flex items-center gap-8 text-sm text-foreground/70">
         {links.map((l) => (
@@ -941,7 +942,7 @@ function EndingSequence() {
       <div className="relative max-w-7xl mx-auto">
         <div className="text-eyebrow mb-8">End credits</div>
         <h2 className="text-display text-[clamp(4rem,18vw,16rem)] leading-[0.85] shimmer-text">
-          antigravity.
+          KRYNEX.
         </h2>
         <p className="mt-8 max-w-lg text-foreground/60 italic">
           "People don't remember pages. They remember experiences." — Studio credo, no. 01
@@ -1004,7 +1005,7 @@ function EndingSequence() {
         </div>
 
         <div className="mt-16 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-foreground/50 border-t border-foreground/10 pt-8">
-          <p>© {new Date().getFullYear()} Antigravity Studio · An interactive fiction.</p>
+          <p>© {new Date().getFullYear()} KRYNEX Studio · An interactive fiction.</p>
           <p className="md:ml-auto tracking-[0.28em] uppercase text-right">Crafted with intention</p>
         </div>
       </div>
