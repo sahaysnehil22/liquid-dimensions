@@ -117,7 +117,7 @@ export function CustomCursor() {
           background: mode.kind === "bloom"
             ? "radial-gradient(circle, color-mix(in oklab, var(--aurora-4) 60%, transparent), transparent 70%)"
             : "transparent",
-        } as React.CSSProperties}
+        } as any}
       >
         <AnimatePresence>
           {isHover && mode.label && (
