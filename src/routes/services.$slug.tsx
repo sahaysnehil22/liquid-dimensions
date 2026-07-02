@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { AuroraBackground, AtmosphereProvider, ChapterLabel, SplitReveal, LiquidButton } from "@/components/experience";
+import krynexLogo from "@/assets/krynex-logo.png.asset.json";
 
 type Service = {
   slug: string;
