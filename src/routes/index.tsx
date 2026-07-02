@@ -44,8 +44,8 @@ function Nav() {
   return (
     <header className="fixed top-0 inset-x-0 z-50 flex items-center justify-between px-6 md:px-10 py-5">
       <a href="#top" className="flex items-center gap-2 font-display text-xl tracking-tight" data-cursor="hover" data-cursor-label="TOP">
-        <span className="inline-block size-2.5 rounded-full bg-foreground" />
-        antigravity
+        <img src={krynexLogo.url} alt="KRYNEX" className="h-7 w-auto object-contain invert" />
+        <span className="sr-only">KRYNEX</span>
       </a>
       <nav className="hidden md:flex items-center gap-8 text-sm text-foreground/70">
         {links.map((l) => (
