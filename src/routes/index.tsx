@@ -611,10 +611,10 @@ function Testimonials() {
                       <div className="absolute inset-0" style={{
                         background: `linear-gradient(135deg, ${m.a}, color-mix(in oklab, white 60%, ${m.a}))`,
                       }} />
-                      <div className="absolute inset-0 hidden md:flex items-center justify-center text-6xl text-display text-foreground/40">
-                        {m.n.charAt(0)}
+                      <div className="absolute inset-0 hidden md:flex flex-col items-center justify-center text-center px-4">
+                        <div className="text-5xl text-display text-foreground/50">{m.n.charAt(0).toUpperCase()}</div>
+                        {m.project && <div className="mt-3 text-eyebrow text-foreground/70">{m.project}</div>}
                       </div>
-
                       <motion.div
                         animate={{ backgroundPosition: ["0% 0%", "100% 100%"] }}
                         transition={{ duration: 8, repeat: Infinity, repeatType: "reverse" }}
@@ -626,7 +626,7 @@ function Testimonials() {
                       />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="font-display text-xl md:text-2xl leading-snug">{m.q}</p>
+                      <p className="font-display text-lg md:text-xl leading-snug">{m.q}</p>
                       <footer className="mt-4 text-eyebrow">— {m.n} · {m.r}</footer>
                     </div>
                   </div>
