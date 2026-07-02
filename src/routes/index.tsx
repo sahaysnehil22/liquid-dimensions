@@ -500,10 +500,10 @@ function Manifesto() {
 /* CHAPTER — WORK */
 function Work() {
   const projects = [
-    { t: "Halcyon", c: "Luxury fragrance", tags: "Brand · E-com · Motion", a: "var(--aurora-1)" },
-    { t: "Northline", c: "Fintech", tags: "Product · Design system", a: "var(--aurora-2)" },
-    { t: "Fieldnotes", c: "Editorial", tags: "Publication · 3D", a: "var(--aurora-3)" },
-    { t: "Ozone", c: "Climate tech", tags: "Brand · Web · Data viz", a: "var(--aurora-4)" },
+    { slug: "paperfellows",     t: "PaperFellows",     c: "Luxury Design",     tags: "Brand · E-com · Motion",   a: "var(--aurora-1)" },
+    { slug: "cryptosim",        t: "CryptoSim",        c: "Fintech",           tags: "Product · Design system",  a: "var(--aurora-2)" },
+    { slug: "leaseabstractor",  t: "LeaseAbstractor",  c: "Editorial",         tags: "Publication · 3D",         a: "var(--aurora-3)" },
+    { slug: "lead-generator",   t: "Lead Generator",   c: "Climate tech",      tags: "Brand · Web · Data viz",   a: "var(--aurora-4)" },
   ];
   return (
     <section id="work" className="relative pt-16 md:pt-24 pb-40 px-6 md:px-10">
@@ -514,32 +514,37 @@ function Work() {
         </h2>
         <div className="mt-24 grid md:grid-cols-2 gap-8">
           {projects.map((p, i) => (
-            <motion.article
+            <motion.div
               key={p.t}
               initial={{ opacity: 0, y: 80 }} whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 1, delay: (i % 2) * 0.1, ease: [0.2, 0.9, 0.2, 1] }}
-              className="group relative liquid rounded-3xl p-8 md:p-10 aspect-[4/5] flex flex-col justify-between overflow-hidden"
-              data-cursor="open" data-cursor-label="CASE"
             >
-              <motion.div
-                whileHover={{ scale: 1.15 }} transition={{ duration: 1.2, ease: [0.2, 0.9, 0.2, 1] }}
-                className="absolute inset-0"
-                style={{ background: `radial-gradient(circle at 70% 30%, ${p.a}, transparent 55%)`, opacity: 0.55 }}
-              />
-              <div className="relative flex items-start justify-between">
-                <span className="text-eyebrow">{String(i + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}</span>
-                <span className="text-eyebrow">{p.tags}</span>
-              </div>
-              <div className="relative">
-                <div className="text-eyebrow mb-2 opacity-70">{p.c}</div>
-                <h3 className="text-6xl md:text-8xl text-display">{p.t}</h3>
-                <div className="mt-6 flex items-center gap-2 text-sm text-foreground/80">
-                  <span>Open case study</span>
-                  <motion.span animate={{ x: [0, 4, 0] }} transition={{ duration: 2, repeat: Infinity }}>→</motion.span>
+              <Link
+                to="/work/$slug"
+                params={{ slug: p.slug }}
+                className="group relative liquid rounded-3xl p-8 md:p-10 aspect-[4/5] flex flex-col justify-between overflow-hidden"
+                data-cursor="open" data-cursor-label="CASE"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.15 }} transition={{ duration: 1.2, ease: [0.2, 0.9, 0.2, 1] }}
+                  className="absolute inset-0"
+                  style={{ background: `radial-gradient(circle at 70% 30%, ${p.a}, transparent 55%)`, opacity: 0.55 }}
+                />
+                <div className="relative flex items-start justify-between">
+                  <span className="text-eyebrow">{String(i + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}</span>
+                  <span className="text-eyebrow">{p.tags}</span>
                 </div>
-              </div>
-            </motion.article>
+                <div className="relative">
+                  <div className="text-eyebrow mb-2 opacity-70">{p.c}</div>
+                  <h3 className="text-6xl md:text-8xl text-display">{p.t}</h3>
+                  <div className="mt-6 flex items-center gap-2 text-sm text-foreground/80">
+                    <span>Open case study</span>
+                    <motion.span animate={{ x: [0, 4, 0] }} transition={{ duration: 2, repeat: Infinity }}>→</motion.span>
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
           ))}
         </div>
       </div>
