@@ -607,29 +607,34 @@ function Testimonials() {
                   </div>
                 )}
                 {m.kind === "frame" && (
-                  <div className="relative h-full flex flex-col sm:flex-row gap-6 items-stretch sm:items-center">
-                    <div className="relative aspect-[3/4] w-full sm:w-auto sm:h-full sm:min-w-[35%] rounded-2xl overflow-hidden bg-foreground/5 shrink-0">
-                      <div className="absolute inset-0" style={{
-                        background: `linear-gradient(135deg, ${m.a}, color-mix(in oklab, white 60%, ${m.a}))`,
-                      }} />
-                      <div className="absolute inset-0 hidden md:flex flex-col items-center justify-center text-center px-4">
-                        <div className="text-5xl text-display text-foreground/50">{m.n.charAt(0).toUpperCase()}</div>
-                        {m.project && <div className="mt-3 text-eyebrow text-foreground/70">{m.project}</div>}
+                  <div className="relative h-full flex flex-col justify-between gap-6">
+                    <div className="flex items-center gap-4">
+                      <div
+                        className="size-14 rounded-full overflow-hidden shrink-0 ring-1 ring-foreground/10"
+                        style={{ background: `conic-gradient(from 0deg, ${m.a}, color-mix(in oklab, white 50%, ${m.a}), ${m.a})` }}
+                      >
+                        {m.photo ? (
+                          <img
+                            src={m.photo}
+                            alt={m.n}
+                            width={56}
+                            height={56}
+                            loading="lazy"
+                            className="h-full w-full object-cover"
+                          />
+                        ) : (
+                          <div className="h-full w-full flex items-center justify-center font-display text-2xl text-foreground/80">
+                            {m.n.charAt(0).toUpperCase()}
+                          </div>
+                        )}
                       </div>
-                      <motion.div
-                        animate={{ backgroundPosition: ["0% 0%", "100% 100%"] }}
-                        transition={{ duration: 8, repeat: Infinity, repeatType: "reverse" }}
-                        className="absolute inset-0 mix-blend-overlay opacity-40"
-                        style={{
-                          background: "linear-gradient(120deg, transparent, rgba(255,255,255,0.6), transparent)",
-                          backgroundSize: "200% 200%",
-                        }}
-                      />
+                      <div className="min-w-0">
+                        <div className="font-display text-xl truncate">{m.n}</div>
+                        {m.project && <div className="text-eyebrow">{m.project}</div>}
+                      </div>
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="font-display text-lg md:text-xl leading-snug">{m.q}</p>
-                      <footer className="mt-4 text-eyebrow">— {m.n} · {m.r}</footer>
-                    </div>
+                    <p className="font-display text-lg md:text-xl italic leading-snug">"{m.q}"</p>
+                    <footer className="text-eyebrow">— {m.n} · {m.r}</footer>
                   </div>
                 )}
 
